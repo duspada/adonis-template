@@ -1,27 +1,25 @@
-const { test, trait } = use('Test/Suite')('Session')
+const { test, trait } = use('Test/Suite')('Session');
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+const Factory = use('Factory');
 
-trait('Test/ApiClient')
-trait('DatabaseTransactions')
+trait('Test/ApiClient');
+trait('DatabaseTransactions');
 
 test('it should be able to login', async ({ client, assert }) => {
   const userData = {
     name: 'teste',
     email: 'a@b.c',
-    password: '123456'
-  }
+    password: '123456',
+  };
 
-  await Factory
-    .model('App/Models/User')
-    .create(userData)
+  await Factory.model('App/Models/User').create(userData);
 
   const response = await client
     .post('/sessions')
     .send(userData)
-    .end()
+    .end();
 
-  response.assertStatus(200)
-  assert.exists(response.body.token)
-})
+  response.assertStatus(200);
+  assert.exists(response.body.token);
+});
