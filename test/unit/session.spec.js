@@ -9,7 +9,7 @@ trait('DatabaseTransactions');
 test('it should be able to login', async ({ client, assert }) => {
   const userData = {
     name: 'teste',
-    email: 'a@b.c',
+    email: 'a@b.com',
     password: '123456',
   };
 

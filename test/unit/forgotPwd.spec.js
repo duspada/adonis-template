@@ -13,7 +13,7 @@ trait('Test/ApiClient');
 trait('DatabaseTransactions');
 
 const userData = {
-  email: 'a@b.c',
+  email: 'a@b.com',
 };
 
 async function createUser(client) {
