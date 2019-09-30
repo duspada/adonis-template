@@ -4,6 +4,7 @@ const { test, trait } = use('Test/Suite')('Session')
 const Factory = use('Factory')
 
 trait('Test/ApiClient')
+trait('DatabaseTransactions')
 
 test('it should be able to login', async ({ client, assert }) => {
   const userData = {
