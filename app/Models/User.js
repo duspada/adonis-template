@@ -34,6 +34,13 @@ class User extends Model {
   tokens() {
     return this.hasMany('App/Models/Token');
   }
+
+  /**
+   * Hide the password from return
+   */
+  static get hidden() {
+    return ['password', 'created_at', 'updated_at', 'id'];
+  }
 }
 
 module.exports = User;
