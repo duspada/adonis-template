@@ -11,9 +11,11 @@ const Factory = use('Factory');
 
 trait('Test/ApiClient');
 trait('DatabaseTransactions');
+trait('Auth/Client');
 
 const userData = {
   email: 'a@b.com',
+  password: '1234',
 };
 
 async function createUser(client) {
@@ -92,4 +94,62 @@ test('it should not be able to reset password after some period', async ({
     .end();
 
   response.assertStatus(400);
+});
+
+test('it should not be able to reset password with revoked token', async ({
+  client,
+  assert,
+}) => {
+  const user = await createUser(client);
+  const { token } = await user.tokens().first();
+
+  await client
+    .put('/reset')
+    .send({
+      token,
+      password: '123456',
+      password_confirmation: '123456',
+    })
+    .end(); // should change normally
+
+  await client
+    .put('/reset')
+    .send({
+      token,
+      password: '1234567',
+      password_confirmation: '1234567',
+    })
+    .end(); // should not have changed
+
+  await user.reload();
+  const hashPassword = await Hash.verify('123456', user.password);
+
+  assert.isTrue(hashPassword);
+});
+
+test('it should not be able to reset password with bearer token', async ({
+  client,
+  assert,
+}) => {
+  const user = await createUser(client);
+  const response = await client
+    .post('/sessions')
+    .send(userData)
+    .end();
+
+  const { token } = response.body.token;
+
+  await client
+    .put('/reset')
+    .send({
+      token,
+      password: '123456',
+      password_confirmation: '123456',
+    })
+    .end();
+
+  await user.reload();
+  const hashPassword = await Hash.verify('1234', user.password);
+
+  assert.isTrue(hashPassword);
 });

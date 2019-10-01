@@ -1,4 +1,4 @@
-const { test, trait } = use('Test/Suite')('Session');
+const { test, trait } = use('Test/Suite')('Sign Up');
 
 trait('Test/ApiClient');
 trait('DatabaseTransactions');
