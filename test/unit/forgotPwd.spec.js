@@ -132,6 +132,9 @@ test('it should not be able to reset password with bearer token', async ({
   assert,
 }) => {
   const user = await createUser(client);
+  user.active = true;
+  await user.save();
+
   const response = await client
     .post('/sessions')
     .send(userData)
