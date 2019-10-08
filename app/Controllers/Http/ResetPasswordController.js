@@ -10,16 +10,16 @@ class ResetPasswordController {
     const { token, password } = request.only(['token', 'password']);
     const userToken = await Token.findByOrFail('token', token);
 
+    if (userToken.type !== 'forgotpassword') {
+      return response.status(400).json({ error: 'Invalid token' });
+    }
+
     if (isBefore(parseISO(userToken.created_at), subMinutes(new Date(), 120))) {
       return response.status(400).json({ error: 'Invalid token date' });
     }
 
     if (userToken.is_revoked) {
-      return response.status(400).json({ error: 'Invalid token revoked' });
-    }
-
-    if (userToken.type !== 'forgotpassword') {
-      return response.status(400).json({ error: 'Invalid token' });
+      return response.status(400).json({ error: 'Token revoked' });
     }
 
     const user = await userToken.user().fetch();

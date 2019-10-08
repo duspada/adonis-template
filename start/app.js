@@ -1,3 +1,5 @@
+const path = require('path');
+
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -9,6 +11,7 @@
 |
 */
 const providers = [
+  path.join(__dirname, '..', 'providers', 'CustomValidationProvider'),
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
@@ -18,6 +21,7 @@ const providers = [
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/framework/providers/ViewProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
+  '@adonisjs/antl/providers/AntlProvider',
 ];
 
 /*
@@ -55,4 +59,9 @@ const aliases = {};
 */
 const commands = [];
 
-module.exports = { providers, aceProviders, aliases, commands };
+module.exports = {
+  providers,
+  aceProviders,
+  aliases,
+  commands,
+};
