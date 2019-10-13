@@ -304,6 +304,11 @@ adonis-acl@^1.1.1:
     lodash "^4.17.4"
     node-exceptions "^2.0.2"
 
+adonis-bumblebee@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/adonis-bumblebee/-/adonis-bumblebee-2.0.0.tgz#9339f284690d4e051646107408b47ec8c8236308"
+  integrity sha512-HUvzuoU3Xb4je23Pjec1SLTA8r8GWUoE6BVCl9y32IfrqKD3o1XXWwWcHs5SK1zFgb4OLjB6NDWQmvg8MKs1tg==
+
 ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.10.2.tgz#d3cea04d6b017b2894ad69040fec8b623eb4bd52"

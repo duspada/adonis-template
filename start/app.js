@@ -24,6 +24,7 @@ const providers = [
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/websocket/providers/WsProvider',
   'adonis-acl/providers/AclProvider',
+  'adonis-bumblebee/providers/BumblebeeProvider',
 ];
 
 /*
@@ -38,6 +39,7 @@ const providers = [
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
   'adonis-acl/providers/CommandsProvider',
+  'adonis-bumblebee/providers/CommandsProvider',
 ];
 
 /*
