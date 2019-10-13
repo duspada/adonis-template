@@ -17,6 +17,7 @@ class UserSchema extends Schema {
         .notNullable()
         .unique();
       table.string('password').notNullable();
+      table.integer('image_id').unsigned();
       table
         .bool('active')
         .notNullable()
