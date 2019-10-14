@@ -46,6 +46,10 @@ class User extends Model {
     return this.hasMany('App/Models/Token');
   }
 
+  images() {
+    return this.hasMany('App/Models/Image');
+  }
+
   /**
    * Hide the password from return
    */
